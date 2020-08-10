@@ -1,7 +1,8 @@
-package com.example.practical_2_part_a;
+package com.example.Hello_Toast_W7;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -11,6 +12,8 @@ public class MainActivity extends AppCompatActivity {
 
     private int mCount = 0 ;
     private TextView mShowCount;
+    private TextView mCountTextView;
+    public static final String COUNT_MESSAGE = "com.example.android.Hello_Toast_W7.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,11 +22,12 @@ public class MainActivity extends AppCompatActivity {
         mShowCount = (TextView) findViewById(R.id.show_count);
     }
 
-    public void showToast(View view)
+    public void launchSecondActivity(View view)
     {
-        Toast toast = Toast.makeText(this,R.string.toast_message, Toast.LENGTH_SHORT);
-
-        toast.show();
+        Intent intent = new Intent(this, SecondActivity.class);
+        String message = mShowCount.getText().toString();
+        intent.putExtra(COUNT_MESSAGE,message);
+        startActivity(intent);
     }
 
     public void countUp(View view)
